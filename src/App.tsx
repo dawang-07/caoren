@@ -597,11 +597,11 @@ function ArcadeResume() {
               key={i}
               className="text-center h-full"
             >
-              <PixelPanel color="cyan" padding="p-4 md:p-8" className="items-center text-center">
+              <PixelPanel color="cyan" padding="p-3 md:p-8" className="items-center text-center">
                 <div className="flex flex-col items-center">
                   <PixelIconBox icon={item.icon || Heart} color="cyan" text={`0${i + 1}`} />
-                  <h3 className="text-[11px] sm:text-sm md:text-lg font-display font-bold text-white mb-2 md:mb-4 tracking-wide uppercase leading-tight">{item.title}</h3>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-purple-200/80 leading-relaxed font-sans line-clamp-4 md:line-clamp-none">{item.desc}</p>
+                  <h3 className="text-[10px] sm:text-sm md:text-lg font-display font-bold text-white mb-2 md:mb-4 tracking-wide uppercase leading-tight">{item.title}</h3>
+                  <p className="text-[8px] sm:text-xs md:text-sm text-purple-200/80 leading-relaxed font-sans line-clamp-3 md:line-clamp-none">{item.desc}</p>
                 </div>
               </PixelPanel>
             </motion.div>
@@ -617,11 +617,11 @@ function ArcadeResume() {
               key={i + 3}
               className="text-center h-full"
             >
-              <PixelPanel color="cyan" padding="p-4 md:p-8" className="items-center text-center">
+              <PixelPanel color="cyan" padding="p-3 md:p-8" className="items-center text-center">
                 <div className="flex flex-col items-center">
                   <PixelIconBox icon={item.icon || Swords} color="cyan" text={`0${i + 4}`} />
-                  <h3 className="text-[11px] sm:text-sm md:text-lg font-display font-bold text-white mb-2 md:mb-4 tracking-wide uppercase leading-tight">{item.title}</h3>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-purple-200/80 leading-relaxed font-sans line-clamp-4 md:line-clamp-none">{item.desc}</p>
+                  <h3 className="text-[10px] sm:text-sm md:text-lg font-display font-bold text-white mb-2 md:mb-4 tracking-wide uppercase leading-tight">{item.title}</h3>
+                  <p className="text-[8px] sm:text-xs md:text-sm text-purple-200/80 leading-relaxed font-sans line-clamp-3 md:line-clamp-none">{item.desc}</p>
                 </div>
               </PixelPanel>
             </motion.div>
@@ -654,13 +654,13 @@ function ArcadeResume() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5 }}
-                className="w-[calc(50%-40px)] md:w-[calc(50%-120px)]"
+                className="w-[calc(50%-50px)] md:w-[calc(50%-120px)]"
               >
-                <PixelPanel color="cyan" hover={false} className="relative opacity-90" padding="p-4 md:p-6">
+                <PixelPanel color="cyan" hover={false} className="relative opacity-90" padding="p-2 md:p-6">
                   <div className="mb-2 md:mb-4 border-b border-[#00ffff]/30 pb-2 md:pb-4 relative z-10">
                     <div className="flex items-center gap-1.5 md:gap-3 mb-1 md:mb-2">
                       <span className="bg-[#00ffff] text-[#0b0218] text-[8px] md:text-xs font-bold px-1 md:px-2 py-0.5 rounded-sm shrink-0 animate-pulse">NEXT</span>
-                      <h3 className="text-[10px] md:text-2xl font-display font-bold text-white tracking-wide uppercase text-neon-cyan break-words">
+                      <h3 className="text-xs md:text-2xl font-display font-bold text-white tracking-wide uppercase text-neon-cyan break-words">
                         未知的下一站
                       </h3>
                     </div>
@@ -669,7 +669,7 @@ function ArcadeResume() {
                     </div>
                   </div>
 
-                  <div className="text-cyan-100/80 text-[10px] md:text-sm leading-relaxed font-sans relative z-10 italic">
+                  <div className="text-cyan-100/80 text-[8px] md:text-sm leading-relaxed font-sans relative z-10 italic">
                     <p>“玩家已准备就绪...”</p>
                   </div>
                 </PixelPanel>
@@ -696,13 +696,13 @@ function ArcadeResume() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5 }}
-                    className="w-[calc(50%-40px)] md:w-[calc(50%-120px)]"
+                    className="w-[calc(50%-50px)] md:w-[calc(50%-120px)]"
                   >
-                    <PixelPanel color="cyan" hover={false} className="relative" padding="p-4 md:p-6">
+                    <PixelPanel color="cyan" hover={false} className="relative" padding="p-2 md:p-6">
                       <div className="mb-2 md:mb-6 border-b border-[#ff00ff]/30 pb-2 md:pb-4 relative z-10">
                         <div className="flex items-center gap-1.5 md:gap-3 mb-1 md:mb-2">
                           <span className="bg-[#00ff00]/20 border border-[#00ff00] text-[#00ff00] text-[8px] md:text-xs font-bold px-1 md:px-2 py-0.5 rounded-sm shrink-0 shadow-[0_0_8px_rgba(0,255,0,0.3)] tracking-widest">已达成</span>
-                          <h3 className="text-[10px] md:text-2xl font-display font-bold text-white tracking-wide uppercase text-neon-cyan break-words">
+                          <h3 className="text-xs md:text-2xl font-display font-bold text-white tracking-wide uppercase text-neon-cyan break-words">
                             {exp.company}
                           </h3>
                         </div>
@@ -714,11 +714,11 @@ function ArcadeResume() {
                         </div>
                       </div>
 
-                      <div className="space-y-2 md:space-y-4 text-purple-100/90 text-[10px] md:text-sm leading-relaxed font-sans relative z-10">
+                      <div className="space-y-2 md:space-y-4 text-purple-100/90 text-[8px] md:text-sm leading-relaxed font-sans relative z-10">
                         {exp.achievement && (
                           <div className="bg-gradient-to-r from-[#ff00ff]/30 to-[#00ffff]/10 border border-[#ff00ff] p-1 md:p-4 flex gap-2 md:gap-4 items-center shadow-[0_0_15px_rgba(255,0,255,0.3)] mb-2 md:mb-4">
                             <Trophy className="w-3 h-3 md:w-5 md:h-5 text-[#ff00ff] shrink-0" />
-                            <p className="font-bold text-white text-[9px] md:text-base tracking-wide">{exp.achievement}</p>
+                            <p className="font-bold text-white text-[8px] md:text-base tracking-wide">{exp.achievement}</p>
                           </div>
                         )}
 
@@ -768,22 +768,22 @@ function ArcadeResume() {
 
         <div className="grid grid-cols-2 gap-4 md:gap-8">
           {/* Education */}
-          <PixelPanel color="magenta" padding="p-5 md:p-8" className="text-center h-full">
+          <PixelPanel color="magenta" padding="p-8" className="text-center h-full">
             <div className="flex flex-col items-center justify-center h-full">
-              <h3 className="text-[#ff00ff] font-display font-bold text-sm md:text-xl mb-6 tracking-widest relative z-10 uppercase">学历认证 / EDUCATION</h3>
+              <h3 className="text-[#ff00ff] font-display font-bold text-xl mb-6 tracking-widest relative z-10 uppercase">学历认证 / EDUCATION</h3>
               <PixelIconBox icon={GraduationCap} color="magenta" />
-              <p className="text-white font-bold text-sm md:text-2xl mb-2 relative z-10 mt-4">{resumeData.education.school}</p>
-              <p className="text-purple-200 text-[10px] md:text-lg mb-2 relative z-10">{resumeData.education.major} | {resumeData.education.degree}</p>
-              <p className="text-gray-400 text-[8px] md:text-sm relative z-10 font-mono">{resumeData.education.date}</p>
+              <p className="text-white font-bold text-2xl mb-2 relative z-10 mt-4">{resumeData.education.school}</p>
+              <p className="text-purple-200 text-lg mb-2 relative z-10">{resumeData.education.major} | {resumeData.education.degree}</p>
+              <p className="text-gray-400 text-sm relative z-10 font-mono">{resumeData.education.date}</p>
             </div>
           </PixelPanel>
 
           {/* Links */}
-          <PixelPanel color="cyan" padding="p-5 md:p-8" className="text-center h-full">
+          <PixelPanel color="cyan" padding="p-8" className="text-center h-full">
             <div className="flex flex-col items-center justify-center h-full w-full">
-              <h3 className="text-[#00ffff] font-display font-bold text-sm md:text-xl mb-8 tracking-widest relative z-10 uppercase">作品集传送门 / PORTFOLIO</h3>
+              <h3 className="text-[#00ffff] font-display font-bold text-xl mb-8 tracking-widest relative z-10 uppercase">作品集传送门 / PORTFOLIO</h3>
               
-              <div className="space-y-4 md:space-y-6 w-full relative z-10">
+              <div className="space-y-6 w-full relative z-10">
                 {resumeData.portfolio.map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -792,22 +792,22 @@ function ArcadeResume() {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex items-center justify-between w-full bg-[#0b0218] border-2 border-[#00ffff]/50 p-2 md:p-4 overflow-hidden transition-all duration-300 hover:border-[#00ffff] hover:shadow-[0_0_20px_rgba(0,255,255,0.4)]"
+                      className="group relative flex items-center justify-between w-full bg-[#0b0218] border-2 border-[#00ffff]/50 p-4 overflow-hidden transition-all duration-300 hover:border-[#00ffff] hover:shadow-[0_0_20px_rgba(0,255,255,0.4)]"
                     >
                       {/* Hover Scanline Effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ffff]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
                       
-                      <div className="flex items-center gap-2 md:gap-4 relative z-10">
-                        <div className="w-8 h-8 md:w-12 md:h-12 bg-[#00ffff]/10 border border-[#00ffff]/30 flex items-center justify-center text-[#00ffff] group-hover:bg-[#00ffff] group-hover:text-[#0b0218] transition-colors">
-                          <Icon className="w-4 h-4 md:w-6 md:h-6" />
+                      <div className="flex items-center gap-4 relative z-10">
+                        <div className="w-12 h-12 bg-[#00ffff]/10 border border-[#00ffff]/30 flex items-center justify-center text-[#00ffff] group-hover:bg-[#00ffff] group-hover:text-[#0b0218] transition-colors">
+                          <Icon className="w-6 h-6" />
                         </div>
                         <div className="text-left">
-                          <p className="text-white font-bold text-[10px] md:text-lg group-hover:text-[#00ffff] transition-colors">{item.title}</p>
-                          {item.desc && <p className="text-[8px] md:text-xs text-[#00ffff]/70 mt-1 font-mono">{item.desc}</p>}
+                          <p className="text-white font-bold text-lg group-hover:text-[#00ffff] transition-colors">{item.title}</p>
+                          {item.desc && <p className="text-xs text-[#00ffff]/70 mt-1 font-mono">{item.desc}</p>}
                         </div>
                       </div>
                       
-                      <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-[#00ffff]/50 group-hover:text-[#00ffff] group-hover:translate-x-1 transition-all relative z-10" />
+                      <ChevronRight className="w-6 h-6 text-[#00ffff]/50 group-hover:text-[#00ffff] group-hover:translate-x-1 transition-all relative z-10" />
                     </a>
                   );
                 })}
