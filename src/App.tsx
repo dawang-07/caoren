@@ -9,28 +9,6 @@ import {
 
 // --- Custom Components for Interaction ---
 
-const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 border-2 border-[#00ffff] rounded-full pointer-events-none z-[9999] mix-blend-screen flex items-center justify-center shadow-[0_0_10px_#00ffff]"
-      animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
-    >
-      <div className="w-2 h-2 bg-[#ff00ff] rounded-full shadow-[0_0_10px_#ff00ff]" />
-    </motion.div>
-  );
-};
-
 const FloatingParticles = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -390,11 +368,11 @@ const ComplexLadderTrack = () => {
   // c3 (Level 3): Center at ~63% from bottom -> Height ~6%
   // c4 (Level 4): Center at ~80% from bottom -> Height ~28%
   const columns = [
-    { c1: 10, c2: 46, c3: 12, c4: 25 },
-    { c1: 8, c2: 50, c3: 13, c4: 21 },
-    { c1: 11, c2: 46, c3: 12, c4: 23 },
-    { c1: 9, c2: 49, c3: 13, c4: 20 },
-    { c1: 10, c2: 48, c3: 12, c4: 24 },
+    { c1: 10, c2: 49, c3: 13, c4: 20 },
+    { c1: 8,  c2: 50, c3: 12, c4: 21 },
+    { c1: 11, c2: 48, c3: 14, c4: 20 },
+    { c1: 9,  c2: 51, c3: 12, c4: 19 },
+    { c1: 10, c2: 49, c3: 13, c4: 20 },
   ];
 
   // Classic Arcade Tetris Colors
@@ -520,7 +498,6 @@ function ArcadeResume() {
 
   return (
     <div className="min-h-screen font-sans pb-24 selection:bg-[#ff00ff]/30 relative">
-      <CustomCursor />
       <ScrollProgress />
       <FloatingParticles />
       <BackgroundEffects />
@@ -681,7 +658,7 @@ function ArcadeResume() {
             <div className="relative flex flex-col md:flex-row items-center md:justify-start">
               
               {/* Level Badge (Center) - Pixel Block Style */}
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 translate-y-6 z-20 items-center justify-center">
+              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 translate-y-10 z-20 items-center justify-center">
                 <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
                   <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
                 </div>
@@ -734,7 +711,7 @@ function ArcadeResume() {
                 <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                   
                   {/* Level Badge (Center) - Pixel Block Style */}
-                  <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 items-center justify-center ${level === 3 ? '-translate-y-12' : ''}`}>
+                  <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 items-center justify-center`}>
                     <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
                       <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
                     </div>
@@ -808,6 +785,20 @@ function ArcadeResume() {
                                 </ul>
                               </div>
                             ))}
+                          </div>
+                        )}
+
+                        {exp.caseStudy && (
+                          <div className="mt-6 bg-gradient-to-r from-[#ffff00]/20 to-transparent border-l-4 border-[#ffff00] p-4 shadow-[0_0_15px_rgba(255,255,0,0.15)]">
+                            <h4 className="text-[#ffff00] font-display font-bold text-sm mb-3 uppercase drop-shadow-[0_0_5px_rgba(255,255,0,0.8)]">{exp.caseStudy.title}</h4>
+                            <ul className="space-y-2">
+                              {exp.caseStudy.items.map((item, itemIdx) => (
+                                <li key={itemIdx} className="flex gap-2 items-start">
+                                  <div className="w-1.5 h-1.5 bg-[#ffff00] shrink-0 mt-1.5 shadow-[0_0_5px_#ffff00]"></div>
+                                  <span className="text-yellow-100/90 text-xs leading-relaxed">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         )}
                       </div>
