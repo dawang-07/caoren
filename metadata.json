@@ -1,5 +1,5 @@
 {
-  "name": "曹仁-个人简历",
-  "description": "曹仁的个人简历 - 赛博朋克/街机风格作品集",
+  "name": "GitHub Resume Builder",
+  "description": "A personal resume website generated from GitHub profile data using a Personal Access Token.",
   "requestFramePermissions": []
 }
