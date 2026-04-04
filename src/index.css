@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Orbitron:wght@500;700;900&family=VT323&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  --font-pixel: "VT323", monospace;
+}
+
+body {
+  background-color: #0b0218;
+  color: #e2e8f0;
+  overflow-x: hidden;
+  margin: 0;
+  cursor: crosshair;
+}
+
+/* Pixel Clip Path (2-step corner for authentic 8-bit look) */
+.pixel-clip {
+  clip-path: polygon(
+    6px 0, calc(100% - 6px) 0,
+    calc(100% - 6px) 3px, calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%, 6px 100%,
+    6px calc(100% - 3px), 3px calc(100% - 3px),
+    3px calc(100% - 6px), 0 calc(100% - 6px),
+    0 6px, 3px 6px,
+    3px 3px, 6px 3px
+  );
+}
+
+/* Larger Pixel Clip Path */
+.pixel-clip-lg {
+  clip-path: polygon(
+    16px 0, calc(100% - 16px) 0,
+    calc(100% - 16px) 8px, calc(100% - 8px) 8px,
+    calc(100% - 8px) 16px, 100% 16px,
+    100% calc(100% - 16px), calc(100% - 8px) calc(100% - 16px),
+    calc(100% - 8px) calc(100% - 8px), calc(100% - 16px) calc(100% - 8px),
+    calc(100% - 16px) 100%, 16px 100%,
+    16px calc(100% - 8px), 8px calc(100% - 8px),
+    8px calc(100% - 16px), 0 calc(100% - 16px),
+    0 16px, 8px 16px,
+    8px 8px, 16px 8px
+  );
+}
+
+/* Text Glows */
+.text-neon-magenta {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+.text-neon-cyan {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.text-neon-yellow {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ffff00, 0 0 20px #ffff00;
+}
+
+/* Avatar Frame */
+.avatar-frame-lol {
+  position: relative;
+  padding: 6px;
+  background: #00ffff;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.avatar-inner-lol {
+  background: #090214;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Buttons */
+.btn-lol {
+  background: linear-gradient(to bottom, #9d27b0, #4a148c);
+  color: white;
+  border: 2px solid #e040fb;
+  box-shadow: 0 0 15px rgba(224, 64, 251, 0.5), inset 0 0 10px rgba(255,255,255,0.2);
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  font-family: "VT323", monospace;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  padding: 8px 32px;
+  position: relative;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-lol:hover {
+  background: linear-gradient(to bottom, #e040fb, #7b1fa2);
+  box-shadow: 0 0 25px rgba(224, 64, 251, 0.8), inset 0 0 10px rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+/* Utilities */
+.blink {
+  animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0.3; }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

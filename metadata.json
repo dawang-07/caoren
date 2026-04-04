@@ -1,0 +1,5 @@
+{
+  "name": "GitHub Resume Builder",
+  "description": "A personal resume website generated from GitHub profile data using a Personal Access Token.",
+  "requestFramePermissions": []
+}
