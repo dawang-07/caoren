@@ -385,7 +385,7 @@ const ComplexLadderTrack = () => {
   };
 
   return (
-    <div className="hidden md:flex absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[200px] z-0 flex-col py-8 items-center">
+    <div className="flex absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[200px] z-0 flex-col py-8 items-center">
       
       {/* Top Cap (Nested Pixel Arch) - Stepped Pyramid (Hollow Inside) */}
       <div className="relative w-[200px] h-[84px]">
@@ -483,14 +483,14 @@ function ArcadeResume() {
   const navItems = ['STATS', 'QUESTS', 'REPLAYS', 'INVENTORY'];
 
   return (
-    <div className="min-h-screen font-sans pb-24 selection:bg-[#ff00ff]/30 relative">
+    <div className="min-h-screen font-sans pb-24 selection:bg-[#ff00ff]/30 relative min-w-[1024px]">
       <ScrollProgress />
       <FloatingParticles />
       <BackgroundEffects />
       
       {/* Navigation */}
       <nav className="max-w-5xl mx-auto mt-8 bg-[#150524]/60 backdrop-blur-xl border border-[#ff00ff]/50 shadow-[0_0_20px_rgba(255,0,255,0.3)] rounded-full px-6 py-4 flex justify-between items-center overflow-x-auto hide-scrollbar sticky top-4 z-50">
-        <div className="flex gap-8 items-center min-w-max px-4 w-full justify-center md:justify-between">
+        <div className="flex gap-8 items-center min-w-max px-4 w-full justify-between">
           {navItems.map((item) => (
             <a
               key={item}
@@ -504,14 +504,14 @@ function ArcadeResume() {
       </nav>
 
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-6 pt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="max-w-6xl mx-auto px-6 pt-20 flex flex-row items-center gap-20">
         
         {/* Modern Arcade Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-          className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 avatar-frame-lol"
+          className="relative w-64 h-64 shrink-0 avatar-frame-lol"
         >
           <div className="avatar-inner-lol relative">
             {resumeData.avatarUrl ? (
@@ -527,7 +527,7 @@ function ArcadeResume() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex-1 text-center lg:text-left w-full relative z-10"
+          className="flex-1 text-left w-full relative z-10"
         >
           <div className="inline-block bg-gradient-to-r from-[#ff00ff] to-[#8a2be2] text-white font-display font-bold px-4 py-1.5 mb-6 text-sm rounded-full shadow-[0_0_15px_rgba(255,0,255,0.5)] uppercase tracking-widest blink">
             PLAYER 1 READY
@@ -535,7 +535,7 @@ function ArcadeResume() {
           <h1 className="text-5xl md:text-7xl font-display font-black text-neon-magenta mb-4 uppercase tracking-tight hover:text-white transition-colors duration-300 cursor-default">
             {resumeData.name}
           </h1>
-          <h2 className="text-xl md:text-2xl text-[#00ffff] mb-8 font-display tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] flex justify-center lg:justify-start">
+          <h2 className="text-xl md:text-2xl text-[#00ffff] mb-8 font-display tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] flex justify-start">
             {Array.from(resumeData.title).map((char, i) => (
               <motion.span
                 key={i}
@@ -549,9 +549,9 @@ function ArcadeResume() {
           </h2>
 
           {/* Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 max-w-2xl mx-auto lg:mx-0 font-sans text-sm md:text-base">
+          <div className="grid grid-cols-2 gap-4 mb-10 max-w-2xl mx-0 font-sans text-base">
             {resumeData.info.map((item, i) => (
-              <div key={i} className="flex items-center gap-3 text-purple-100 justify-center lg:justify-start bg-[#150524]/80 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-[#00ffff]/30 shadow-[0_0_10px_rgba(0,255,255,0.1)]">
+              <div key={i} className="flex items-center gap-3 text-purple-100 justify-start bg-[#150524]/80 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-[#00ffff]/30 shadow-[0_0_10px_rgba(0,255,255,0.1)]">
                 <item.icon className="w-5 h-5 text-[#ff00ff]" />
                 <span className="tracking-wide font-medium">{item.text}</span>
               </div>
@@ -575,7 +575,7 @@ function ArcadeResume() {
       <section id="stats" className="max-w-5xl mx-auto px-6 relative z-20 mb-32">
         <SectionTitle title="核心优势展示" subtitle="五步解锁核心竞争力" color="cyan" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-8">
           {resumeData.profile.slice(0, 3).map((item, i) => (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -595,7 +595,7 @@ function ArcadeResume() {
             </motion.div>
           ))}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
           {resumeData.profile.slice(3, 5).map((item, i) => (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -627,10 +627,10 @@ function ArcadeResume() {
 
           <div className="space-y-24">
             {/* Level 5 (Future) */}
-            <div className="relative flex flex-col md:flex-row items-center md:justify-start">
+            <div className="relative flex flex-row items-center justify-start">
               
               {/* Level Badge (Center) - Pixel Block Style */}
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 translate-y-10 z-20 items-center justify-center">
+              <div className="flex absolute left-1/2 -translate-x-1/2 translate-y-10 z-20 items-center justify-center">
                 <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
                   <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
                 </div>
@@ -642,16 +642,9 @@ function ArcadeResume() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5 }}
-                className="w-full md:w-[calc(50%-120px)]"
+                className="w-[calc(50%-120px)]"
               >
                 <PixelPanel color="cyan" hover={false} className="relative opacity-90">
-                  {/* Mobile Level Badge - Pixel Block Style */}
-                  <div className="md:hidden absolute -top-4 -right-4 z-30 drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
-                    <div className="w-12 h-12 bg-[#0b0218] border-[3px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_10px_rgba(0,255,255,0.5),inset_3px_3px_0_rgba(255,255,255,0.2),inset_-3px_-3px_0_rgba(0,0,0,0.5)]">
-                      <span className="font-pixel text-2xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
-                    </div>
-                  </div>
-
                   <div className="mb-4 border-b border-[#00ffff]/30 pb-4 relative z-10">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="bg-[#00ffff] text-[#0b0218] text-xs font-bold px-2 py-0.5 rounded-sm shrink-0 animate-pulse">NEXT</span>
@@ -680,10 +673,10 @@ function ArcadeResume() {
               const isEven = i % 2 === 0; // Level 4 (i=0) is right, Level 3 (i=1) is left, etc.
               
               return (
-                <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                <div key={i} className={`relative flex flex-row items-center ${isEven ? 'justify-end' : 'justify-start'}`}>
                   
                   {/* Level Badge (Center) - Pixel Block Style */}
-                  <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 items-center justify-center`}>
+                  <div className={`flex absolute left-1/2 -translate-x-1/2 z-20 items-center justify-center`}>
                     <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
                       <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
                     </div>
@@ -695,16 +688,9 @@ function ArcadeResume() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5 }}
-                    className="w-full md:w-[calc(50%-120px)]"
+                    className="w-[calc(50%-120px)]"
                   >
                     <PixelPanel color="cyan" hover={false} className="relative">
-                      {/* Mobile Level Badge - Pixel Block Style */}
-                      <div className="md:hidden absolute -top-4 -right-4 z-30 drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
-                        <div className="w-12 h-12 bg-[#0b0218] border-[3px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_10px_rgba(0,255,255,0.5),inset_3px_3px_0_rgba(255,255,255,0.2),inset_-3px_-3px_0_rgba(0,0,0,0.5)]">
-                          <span className="font-pixel text-2xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
-                        </div>
-                      </div>
-
                       <div className="mb-6 border-b border-[#ff00ff]/30 pb-4 relative z-10">
                         <div className="flex items-center gap-3 mb-2">
                           <span className="bg-[#00ff00]/20 border border-[#00ff00] text-[#00ff00] text-xs font-bold px-2 py-0.5 rounded-sm shrink-0 shadow-[0_0_8px_rgba(0,255,0,0.3)] tracking-widest">已达成</span>
@@ -787,7 +773,7 @@ function ArcadeResume() {
       <section id="replays" className="max-w-6xl mx-auto px-6 relative z-20 mb-32">
         <SectionTitle title="高光作品图鉴" subtitle="FEATURED VISUAL ASSETS" color="cyan" />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {resumeData.featuredWorks.map((work, i) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -807,7 +793,7 @@ function ArcadeResume() {
       <section id="inventory" className="max-w-5xl mx-auto px-6 relative z-20 mb-20">
         <SectionTitle title="基础属性与装备库" subtitle="INVENTORY & PORTFOLIO" color="cyan" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-8">
           {/* Education */}
           <PixelPanel color="magenta" padding="p-8" className="text-center h-full">
             <div className="flex flex-col items-center justify-center h-full">
