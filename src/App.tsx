@@ -111,6 +111,7 @@ const TiltCard = ({ children, className }: { children: React.ReactNode, classNam
 
 const resumeData = {
   name: "曹 仁",
+  avatarUrl: "", // 如果你想展示真实照片，把照片发给我，我会把链接填在这里。留空则显示默认幽灵图标。
   title: "发行素材项目负责人 / 广告视频制作 / 素材创意策划",
   info: [
     { icon: Phone, text: "18510980584" },
@@ -480,21 +481,6 @@ const ComplexLadderTrack = () => {
 
 function ArcadeResume() {
   const navItems = ['STATS', 'QUESTS', 'REPLAYS', 'INVENTORY'];
-  const [avatar, setAvatar] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleAvatarClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => setAvatar(e.target?.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
 
   return (
     <div className="min-h-screen font-sans pb-24 selection:bg-[#ff00ff]/30 relative">
@@ -525,29 +511,15 @@ function ArcadeResume() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-          className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 avatar-frame-lol group cursor-pointer"
-          onClick={handleAvatarClick}
+          className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 avatar-frame-lol"
         >
           <div className="avatar-inner-lol relative">
-            {avatar ? (
-              <img src={avatar} alt="Avatar" className="w-full h-full object-cover" />
+            {resumeData.avatarUrl ? (
+              <img src={resumeData.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
             ) : (
-              <Ghost className="w-24 h-24 text-[#00ffff] group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(0,255,255,0.8)]" />
+              <Ghost className="w-24 h-24 text-[#00ffff] drop-shadow-[0_0_15px_rgba(0,255,255,0.8)]" />
             )}
-            
-            {/* Upload Overlay */}
-            <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity duration-300">
-              <Upload className="w-8 h-8 text-[#ff00ff] mb-2" />
-              <span className="text-sm text-white font-display font-bold tracking-wider">UPLOAD</span>
-            </div>
           </div>
-          <input 
-            type="file" 
-            ref={fileInputRef} 
-            onChange={handleAvatarChange} 
-            accept="image/*" 
-            className="hidden" 
-          />
         </motion.div>
 
         {/* Introduction Text */}
