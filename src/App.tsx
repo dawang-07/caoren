@@ -275,7 +275,15 @@ const resumeData = {
 const BackgroundEffects = () => (
   <div className="fixed inset-0 pointer-events-none z-[-2] overflow-hidden bg-[#0b0218]">
     {/* Grid */}
-    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,0,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,0,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+    <svg className="absolute inset-0 w-full h-full">
+      <defs>
+        <pattern id="bgGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <rect width="60" height="1" fill="rgba(255,0,255,0.03)" />
+          <rect width="1" height="60" fill="rgba(255,0,255,0.03)" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#bgGrid)" />
+    </svg>
     
     {/* Glowing Orbs */}
     <div className="absolute top-[20%] left-[10%] w-[40vw] h-[40vw] bg-[#4a148c] rounded-full mix-blend-screen filter blur-[100px] opacity-30"></div>
@@ -311,7 +319,7 @@ const SectionTitle = ({ title, subtitle, color = "cyan" }: { title: string, subt
   );
 };
 
-const PixelPanel = ({ children, color = "cyan", className = "", glow = true, padding = "p-4 md:p-8", hover = true }: any) => {
+const PixelPanel = ({ children, color = "cyan", className = "", glow = true, padding = "p-8", hover = true }: any) => {
   const borderColor = color === "cyan" ? "bg-[#00ffff]" : color === "magenta" ? "bg-[#ff00ff]" : "bg-[#ffff00]";
   const shadowColor = color === "cyan" ? "drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]" : color === "magenta" ? "drop-shadow-[0_0_15px_rgba(255,0,255,0.3)]" : "drop-shadow-[0_0_15px_rgba(255,255,0,0.3)]";
   const dashedColor = color === "cyan" ? "border-[#00ffff]/40" : color === "magenta" ? "border-[#ff00ff]/40" : "border-[#ffff00]/40";
@@ -385,11 +393,11 @@ const ComplexLadderTrack = () => {
   };
 
   return (
-    <div className="absolute top-0 bottom-0 left-10 md:left-1/2 -translate-x-1/2 w-[80px] md:w-[200px] z-0 flex-col py-8 items-center flex">
+    <div className="hidden md:flex absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[200px] z-0 flex-col py-8 items-center">
       
       {/* Top Cap (Nested Pixel Arch) - Stepped Pyramid (Hollow Inside) */}
-      <div className="relative w-full h-[40px] md:h-[84px]">
-        <svg width="100%" height="100%" viewBox="0 0 200 84" preserveAspectRatio="xMidYMin meet" className="absolute inset-0 z-10">
+      <div className="relative w-[200px] h-[84px]">
+        <svg width="200" height="84" viewBox="0 0 200 84" className="absolute inset-0 z-10">
           <defs>
             <pattern id="topGrid" width="30" height="30" patternUnits="userSpaceOnUse">
               <rect width="30" height="30" fill="#0b0218" />
@@ -421,58 +429,62 @@ const ComplexLadderTrack = () => {
       </div>
 
       {/* Track Body (Tetris Wall) - Ultra Thick borders and massive shadow */}
-      <div className="relative w-full flex-1 bg-[#005555] px-[6px] md:px-[12px] flex flex-col shadow-[0_0_30px_rgba(0,255,255,0.4),inset_0_0_10px_rgba(0,0,0,0.7)] md:shadow-[0_0_50px_rgba(0,255,255,0.6),inset_0_0_20px_rgba(0,0,0,0.7)]">
+      <div className="relative w-full flex-1 bg-[#005555] px-[12px] flex flex-col shadow-[0_0_50px_rgba(0,255,255,0.6),inset_0_0_20px_rgba(0,0,0,0.7)]">
         {/* Inner Wall */}
-        <div className="relative w-full h-full bg-[#0b0218] border-x-[6px] md:border-x-[12px] border-[#00ffff] flex flex-col overflow-hidden shadow-[inset_0_0_30px_rgba(0,0,0,1)] md:shadow-[inset_0_0_50px_rgba(0,0,0,1)]">
+        <div className="relative w-full h-full bg-[#0b0218] border-x-[12px] border-[#00ffff] flex flex-col overflow-hidden shadow-[inset_0_0_50px_rgba(0,0,0,1)]">
           
           {/* Background Grid (Level 5 Empty Space) */}
-          <div className="absolute inset-0 opacity-40" style={{
-            backgroundImage: `
-              linear-gradient(rgba(0,255,255,0.5) 2px, transparent 2px),
-              linear-gradient(90deg, rgba(0,255,255,0.5) 2px, transparent 2px)
-            `,
-            backgroundSize: '15px 15px'
-          }}></div>
+          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
+            <defs>
+              <pattern id="cyanGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <rect width="30" height="2" fill="rgba(0,255,255,0.5)" />
+                <rect width="2" height="30" fill="rgba(0,255,255,0.5)" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#cyanGrid)" />
+          </svg>
 
           {/* The 5 Columns of Tetris Blocks */}
           <div className="absolute inset-0 flex">
             {columns.map((col, i) => (
               <div key={i} className="flex-1 h-full flex flex-col justify-end">
                 <div className="w-full relative" style={{ height: `${col.c4}%`, backgroundColor: colors.c4 }}>
-                  <div className="absolute inset-0 shadow-[inset_2px_2px_0_rgba(255,255,255,0.4),inset_-2px_-2px_0_rgba(0,0,0,0.3)] md:shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
+                  <div className="absolute inset-0 shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
                 </div>
                 <div className="w-full relative" style={{ height: `${col.c3}%`, backgroundColor: colors.c3 }}>
-                  <div className="absolute inset-0 shadow-[inset_2px_2px_0_rgba(255,255,255,0.4),inset_-2px_-2px_0_rgba(0,0,0,0.3)] md:shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
+                  <div className="absolute inset-0 shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
                 </div>
                 <div className="w-full relative" style={{ height: `${col.c2}%`, backgroundColor: colors.c2 }}>
-                  <div className="absolute inset-0 shadow-[inset_2px_2px_0_rgba(255,255,255,0.4),inset_-2px_-2px_0_rgba(0,0,0,0.3)] md:shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
+                  <div className="absolute inset-0 shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
                 </div>
                 <div className="w-full relative" style={{ height: `${col.c1}%`, backgroundColor: colors.c1 }}>
-                  <div className="absolute inset-0 shadow-[inset_2px_2px_0_rgba(255,255,255,0.4),inset_-2px_-2px_0_rgba(0,0,0,0.3)] md:shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
+                  <div className="absolute inset-0 shadow-[inset_4px_4px_0_rgba(255,255,255,0.4),inset_-4px_-4px_0_rgba(0,0,0,0.3)]"></div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Global Dark Grid Overlay to separate the blocks */}
-          <div className="absolute inset-0 pointer-events-none opacity-60" style={{
-            backgroundImage: `
-              linear-gradient(rgba(0,0,0,0.8) 2px, transparent 2px),
-              linear-gradient(90deg, rgba(0,0,0,0.8) 2px, transparent 2px)
-            `,
-            backgroundSize: '15px 15px'
-          }}></div>
+          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60">
+            <defs>
+              <pattern id="darkGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <rect width="30" height="2" fill="rgba(0,0,0,0.8)" />
+                <rect width="2" height="30" fill="rgba(0,0,0,0.8)" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#darkGrid)" />
+          </svg>
 
         </div>
       </div>
 
       {/* Bottom Cap (Nested Pixel Arch) - Ultra Thick */}
       <div className="flex flex-col items-center w-full">
-        <div className="w-full md:w-[200px] h-[6px] md:h-[12px] bg-[#005555] flex flex-col items-center justify-start">
-          <div className="w-[80%] md:w-[176px] h-full bg-[#00ffff]"></div>
+        <div className="w-[200px] h-[12px] bg-[#005555] flex flex-col items-center justify-start">
+          <div className="w-[176px] h-[12px] bg-[#00ffff]"></div>
         </div>
-        <div className="w-[70%] md:w-[160px] h-[6px] md:h-[12px] bg-[#005555]"></div>
-        <div className="w-[50%] md:w-[120px] h-[6px] md:h-[12px] bg-[#003333]"></div>
+        <div className="w-[160px] h-[12px] bg-[#005555]"></div>
+        <div className="w-[120px] h-[12px] bg-[#003333]"></div>
       </div>
 
     </div>
@@ -489,13 +501,13 @@ function ArcadeResume() {
       <BackgroundEffects />
       
       {/* Navigation */}
-      <nav className="max-w-[95%] md:max-w-5xl mx-auto mt-4 md:mt-8 bg-[#150524]/60 backdrop-blur-xl border border-[#ff00ff]/50 shadow-[0_0_20px_rgba(255,0,255,0.3)] rounded-full px-4 md:px-6 py-3 md:py-4 flex justify-between items-center overflow-x-auto hide-scrollbar sticky top-4 z-50">
-        <div className="flex gap-4 md:gap-8 items-center min-w-max px-2 md:px-4 w-full justify-center md:justify-between">
+      <nav className="max-w-5xl mx-auto mt-8 bg-[#150524]/60 backdrop-blur-xl border border-[#ff00ff]/50 shadow-[0_0_20px_rgba(255,0,255,0.3)] rounded-full px-6 py-4 flex justify-between items-center overflow-x-auto hide-scrollbar sticky top-4 z-50">
+        <div className="flex gap-8 items-center min-w-max px-4 w-full justify-center md:justify-between">
           {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-xs md:text-base font-display font-bold tracking-widest transition-all text-purple-200 hover:text-white hover:text-neon-cyan uppercase"
+              className="text-sm md:text-base font-display font-bold tracking-widest transition-all text-purple-200 hover:text-white hover:text-neon-cyan uppercase"
             >
               {item}
             </a>
@@ -504,14 +516,14 @@ function ArcadeResume() {
       </nav>
 
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 pt-12 md:pt-20 flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
+      <div className="max-w-6xl mx-auto px-6 pt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         
         {/* Modern Arcade Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-          className="relative w-40 h-40 md:w-64 md:h-64 shrink-0 avatar-frame-lol"
+          className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 avatar-frame-lol"
         >
           <div className="avatar-inner-lol relative">
             {resumeData.avatarUrl ? (
@@ -532,16 +544,16 @@ function ArcadeResume() {
           <div className="inline-block bg-gradient-to-r from-[#ff00ff] to-[#8a2be2] text-white font-display font-bold px-4 py-1.5 mb-6 text-sm rounded-full shadow-[0_0_15px_rgba(255,0,255,0.5)] uppercase tracking-widest blink">
             PLAYER 1 READY
           </div>
-          <h1 className="text-4xl md:text-7xl font-display font-black text-neon-magenta mb-4 uppercase tracking-tight hover:text-white transition-colors duration-300 cursor-default">
+          <h1 className="text-5xl md:text-7xl font-display font-black text-neon-magenta mb-4 uppercase tracking-tight hover:text-white transition-colors duration-300 cursor-default">
             {resumeData.name}
           </h1>
-          <h2 className="text-lg md:text-2xl text-[#00ffff] mb-8 font-display tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] flex flex-wrap justify-center lg:justify-start">
+          <h2 className="text-xl md:text-2xl text-[#00ffff] mb-8 font-display tracking-widest uppercase drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] flex justify-center lg:justify-start">
             {Array.from(resumeData.title).map((char, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: i * 0.05 + 0.5 }}
+                transition={{ delay: i * 0.1 + 0.5 }}
               >
                 {char}
               </motion.span>
@@ -572,10 +584,10 @@ function ArcadeResume() {
       </div>
 
       {/* Profile / Player Stats (3 Steps Layout) */}
-      <section id="stats" className="max-w-5xl mx-auto px-4 md:px-6 relative z-20 mb-32">
+      <section id="stats" className="max-w-5xl mx-auto px-6 relative z-20 mb-32">
         <SectionTitle title="核心优势展示" subtitle="五步解锁核心竞争力" color="cyan" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {resumeData.profile.slice(0, 3).map((item, i) => (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -618,7 +630,7 @@ function ArcadeResume() {
       </section>
 
       {/* Experience / Quest Log (Vertical Ladder) */}
-      <section id="quests" className="max-w-6xl mx-auto px-4 md:px-6 relative z-20 mb-32">
+      <section id="quests" className="max-w-6xl mx-auto px-6 relative z-20 mb-32">
         <SectionTitle title="职业晋升挑战赛" subtitle="解锁成就 获取经验" color="cyan" />
         
         <div className="relative py-10 max-w-5xl mx-auto">
@@ -627,12 +639,12 @@ function ArcadeResume() {
 
           <div className="space-y-24">
             {/* Level 5 (Future) */}
-            <div className="relative flex flex-col md:flex-row items-center md:justify-start pl-20 md:pl-0">
+            <div className="relative flex flex-col md:flex-row items-center md:justify-start">
               
               {/* Level Badge (Center) - Pixel Block Style */}
-              <div className="absolute left-10 md:left-1/2 -translate-x-1/2 translate-y-10 z-20 items-center justify-center flex">
-                <div className="w-10 h-10 md:w-14 md:h-14 bg-[#0b0218] border-[3px] md:border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
-                  <span className="font-pixel text-xl md:text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
+              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 translate-y-10 z-20 items-center justify-center">
+                <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
+                  <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
                 </div>
               </div>
 
@@ -644,7 +656,14 @@ function ArcadeResume() {
                 transition={{ duration: 0.5 }}
                 className="w-full md:w-[calc(50%-120px)]"
               >
-                <PixelPanel color="cyan" hover={false} className="relative opacity-90" padding="p-4 md:p-8">
+                <PixelPanel color="cyan" hover={false} className="relative opacity-90">
+                  {/* Mobile Level Badge - Pixel Block Style */}
+                  <div className="md:hidden absolute -top-4 -right-4 z-30 drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
+                    <div className="w-12 h-12 bg-[#0b0218] border-[3px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_10px_rgba(0,255,255,0.5),inset_3px_3px_0_rgba(255,255,255,0.2),inset_-3px_-3px_0_rgba(0,0,0,0.5)]">
+                      <span className="font-pixel text-2xl text-white drop-shadow-[2px_2px_0_#ff00ff]">5</span>
+                    </div>
+                  </div>
+
                   <div className="mb-4 border-b border-[#00ffff]/30 pb-4 relative z-10">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="bg-[#00ffff] text-[#0b0218] text-xs font-bold px-2 py-0.5 rounded-sm shrink-0 animate-pulse">NEXT</span>
@@ -673,12 +692,12 @@ function ArcadeResume() {
               const isEven = i % 2 === 0; // Level 4 (i=0) is right, Level 3 (i=1) is left, etc.
               
               return (
-                <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:justify-end' : 'md:justify-start'} pl-20 md:pl-0`}>
+                <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                   
                   {/* Level Badge (Center) - Pixel Block Style */}
-                  <div className={`absolute left-10 md:left-1/2 -translate-x-1/2 z-20 items-center justify-center flex`}>
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-[#0b0218] border-[3px] md:border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
-                      <span className="font-pixel text-xl md:text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
+                  <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 z-20 items-center justify-center`}>
+                    <div className="w-14 h-14 bg-[#0b0218] border-[4px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(0,255,255,0.5),inset_4px_4px_0_rgba(255,255,255,0.2),inset_-4px_-4px_0_rgba(0,0,0,0.5)]">
+                      <span className="font-pixel text-3xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
                     </div>
                   </div>
 
@@ -690,7 +709,14 @@ function ArcadeResume() {
                     transition={{ duration: 0.5 }}
                     className="w-full md:w-[calc(50%-120px)]"
                   >
-                    <PixelPanel color="cyan" hover={false} className="relative" padding="p-4 md:p-8">
+                    <PixelPanel color="cyan" hover={false} className="relative">
+                      {/* Mobile Level Badge - Pixel Block Style */}
+                      <div className="md:hidden absolute -top-4 -right-4 z-30 drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
+                        <div className="w-12 h-12 bg-[#0b0218] border-[3px] border-[#00ffff] flex items-center justify-center relative z-20 shadow-[0_0_10px_rgba(0,255,255,0.5),inset_3px_3px_0_rgba(255,255,255,0.2),inset_-3px_-3px_0_rgba(0,0,0,0.5)]">
+                          <span className="font-pixel text-2xl text-white drop-shadow-[2px_2px_0_#ff00ff]">{level}</span>
+                        </div>
+                      </div>
+
                       <div className="mb-6 border-b border-[#ff00ff]/30 pb-4 relative z-10">
                         <div className="flex items-center gap-3 mb-2">
                           <span className="bg-[#00ff00]/20 border border-[#00ff00] text-[#00ff00] text-xs font-bold px-2 py-0.5 rounded-sm shrink-0 shadow-[0_0_8px_rgba(0,255,0,0.3)] tracking-widest">已达成</span>
@@ -770,10 +796,10 @@ function ArcadeResume() {
       </section>
 
       {/* Featured Works / Replays (Skin Showcase Grid) */}
-      <section id="replays" className="max-w-6xl mx-auto px-4 md:px-6 relative z-20 mb-32">
+      <section id="replays" className="max-w-6xl mx-auto px-6 relative z-20 mb-32">
         <SectionTitle title="高光作品图鉴" subtitle="FEATURED VISUAL ASSETS" color="cyan" />
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumeData.featuredWorks.map((work, i) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -790,10 +816,10 @@ function ArcadeResume() {
       </section>
 
       {/* Inventory / Education & Links */}
-      <section id="inventory" className="max-w-5xl mx-auto px-4 md:px-6 relative z-20 mb-20">
+      <section id="inventory" className="max-w-5xl mx-auto px-6 relative z-20 mb-20">
         <SectionTitle title="基础属性与装备库" subtitle="INVENTORY & PORTFOLIO" color="cyan" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Education */}
           <PixelPanel color="magenta" padding="p-8" className="text-center h-full">
             <div className="flex flex-col items-center justify-center h-full">
