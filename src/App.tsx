@@ -519,20 +519,98 @@ function ArcadeResume() {
       <div className="max-w-6xl mx-auto px-6 pt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         
         {/* Modern Arcade Avatar */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
-          className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 avatar-frame-lol"
-        >
-          <div className="avatar-inner-lol relative">
-            {resumeData.avatarUrl ? (
-              <img src={resumeData.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
-            ) : (
-              <Ghost className="w-24 h-24 text-[#00ffff] drop-shadow-[0_0_15px_rgba(0,255,255,0.8)]" />
-            )}
-          </div>
-        </motion.div>
+        <div className="relative w-56 h-56 md:w-64 md:h-64 shrink-0 z-20">
+          {/* Floating & Glitching Main Body */}
+          <motion.div
+            animate={{ 
+              y: [-10, 10, -10],
+              x: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 6, -3, 3, 0]
+            }}
+            transition={{ 
+              y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+              x: { duration: 3, repeat: Infinity, ease: "linear" }
+            }}
+            className="relative w-full h-full avatar-frame-lol bg-[#00ffff] drop-shadow-[0_0_15px_rgba(0,255,255,0.5)]"
+          >
+            <div className="avatar-inner-lol relative overflow-hidden flex items-center justify-center bg-[#090214]">
+              
+              {/* Fast Scrolling Cyber Grid */}
+              <motion.div 
+                animate={{ y: [0, 60] }}
+                transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-[-60px] opacity-30 z-0 pointer-events-none"
+              >
+                <svg className="w-full h-full">
+                  <defs>
+                    <pattern id="cyberGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                      <rect width="30" height="1" fill="#00ffff" />
+                      <rect width="1" height="30" fill="#00ffff" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#cyberGrid)" />
+                </svg>
+              </motion.div>
+
+              {/* Holographic Scanline */}
+              <motion.div
+                animate={{ top: ['-20%', '120%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                className="absolute left-0 w-full h-12 bg-gradient-to-b from-transparent via-[#00ffff]/60 to-transparent z-20 pointer-events-none mix-blend-screen"
+              />
+
+              {/* CRT Flicker Overlay */}
+              <motion.div
+                animate={{ opacity: [0, 0.15, 0, 0.2, 0] }}
+                transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 bg-white pointer-events-none z-20 mix-blend-overlay"
+              />
+
+              {resumeData.avatarUrl ? (
+                <motion.img 
+                  animate={{ 
+                    scale: [1, 1.03, 1],
+                    filter: [
+                      "contrast(1) brightness(1) hue-rotate(0deg)",
+                      "contrast(1) brightness(1) hue-rotate(0deg)",
+                      "contrast(1) brightness(1) hue-rotate(0deg)",
+                      "contrast(1) brightness(1) hue-rotate(0deg)",
+                      "contrast(1) brightness(1) hue-rotate(0deg)",
+                      "contrast(1.5) brightness(1.2) hue-rotate(90deg)",
+                      "contrast(1) brightness(1) hue-rotate(0deg)"
+                    ]
+                  }}
+                  transition={{ 
+                    scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                    filter: { duration: 3, repeat: Infinity, ease: "linear" }
+                  }}
+                  src={resumeData.avatarUrl} 
+                  alt="Avatar" 
+                  className="w-full h-full object-cover relative z-10" 
+                />
+              ) : (
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.1, 1], 
+                    y: [-5, 5, -5],
+                    filter: [
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))",
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))",
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))",
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))",
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))",
+                      "drop-shadow(-5px 0px 0px rgba(255,0,255,1)) drop-shadow(5px 0px 0px rgba(0,255,255,1))",
+                      "drop-shadow(0px 0px 15px rgba(0,255,255,1))"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10"
+                >
+                  <Ghost className="w-24 h-24 text-[#00ffff]" />
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
+        </div>
 
         {/* Introduction Text */}
         <motion.div
