@@ -151,7 +151,7 @@ const resumeData = {
     {
       company: "元保集团",
       role: "素材创意制作",
-      date: "2023.10 - 至今",
+      date: "2024.10 - 至今",
       achievement: <>核心成就：业务线从0到1搭建成果显著，入职半年内即获得公司<span className="text-[#ffff00] font-black text-lg drop-shadow-[0_0_8px_rgba(255,255,0,0.8)] px-1">激励股份</span>。</>,
       bullets: [
         "素材管线基建：负责国内 IAA/IAP 小游戏的核心素材创意与制作闭环。从 0 到 1 搭建并完善内部发行素材产出标准、归档流程与质量验收体系。",
